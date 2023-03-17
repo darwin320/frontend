@@ -1,0 +1,125 @@
+<div class="h-100vh d-flex flex-column">
+    <div class="offcanvas-header px-3 pt-3 p-0">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
+    </div>
+    <hr />
+    <div class="offcanvas-body px-3 py-0">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a
+                    routerLink="/home"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-house-fill me-2"></i>
+                    Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/users"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-people-fill me-2"></i>
+                    Usuarios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/clients"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-file-earmark-person-fill me-1"></i>
+                    Clientes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/zones"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-map-fill me-2"></i>
+                    Zonas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/hardware"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-motherboard-fill me-2"></i>
+                    Equipos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/services"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-router-fill me-2"></i>
+                    Servicios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/invoices"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-receipt me-2"></i>
+                    Facturas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    routerLink="/validate-invoices"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-clipboard-check me-2"></i>
+                    Validar facturas
+                </a>
+            </li>
+        </ul>
+    </div>
+    <hr />
+    <div class="canvas-footer px-3 pb-3">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a
+                    routerLink="/config"
+                    class="nav-link"
+                    routerLinkActive="active"
+                    (click)="activeOffcanvas.dismiss()"
+                >
+                    <i class="bi bi-gear-fill me-2"></i>
+                    Configuración
+                </a>
+            </li>
+            <li class="nav-item">
+                <button
+                    class="nav-link text-danger"
+                    routerLinkActive="active"
+                    (click)="activeOffcanvas.dismiss(); logout()"
+                >
+                    <i class="bi bi-door-open-fill"></i>
+                    Cerrar sesión
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div></div>
+</div>

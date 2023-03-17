@@ -1,21 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
+import { User } from "src/app/models/user";
+import { UsersApiService } from "src/app/services/api/users/users-api.service";
+import { MainSidebarComponent } from "src/app/components/sidebars/main-sidebar/main-sidebar.component";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: "app-main-navbar",
+    templateUrl: "./main-navbar.component.html",
+    styleUrls: ["./main-navbar.component.css"],
 })
-export class NavbarComponent implements OnInit {
+export class MainNavbarComponent implements OnInit {
+    public user!: User;
 
-  constructor(private router: Router) { }
+    constructor(
+        private usersApiService: UsersApiService,
+        private offcanvasService: NgbOffcanvas
+    ) {}
 
-  ngOnInit(): void {
-  }
+    public openSidebar() {
+        this.offcanvasService.open(MainSidebarComponent);
+    }
 
-  logOut(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+    public async ngOnInit() {
+        const user = await this.usersApiService.getCurrentUser();
 
+        if (user.ok) {
+            this.user = user.val;
+        }
+    }
 }
