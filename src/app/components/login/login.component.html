@@ -1,0 +1,24 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div class="container">
+        <div class="card card-container">
+            <h1 class="title">Inicio de Sesión</h1>
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="../../../assets/img/claralia-logo.jpeg"/>
+            <p id="profile-name" class="profile-name-card"></p>
+            <form #formulario="ngForm" (ngSubmit)="login(formulario)">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email"  name="email"  class="form-control" placeholder="Correo Electrónico"  required autofocus ngModel>
+                <input type="password"  name="password"  class="form-control" ngModel placeholder="Contraseña" required>
+                <div id="remember" class="checkbox">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Iniciar Sesión</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" routerLink="/signIn">Registro</button>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Olvidaste tu contraseña?
+            </a>
+        </div><!-- /card-container -->  
+    </div><!-- /container -->
+
