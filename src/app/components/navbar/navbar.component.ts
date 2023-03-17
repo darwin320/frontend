@@ -6,8 +6,8 @@ import { MainSidebarComponent } from "src/app/components/sidebars/main-sidebar/m
 
 @Component({
     selector: "app-main-navbar",
-    templateUrl: "./main-navbar.component.html",
-    styleUrls: ["./main-navbar.component.css"],
+    templateUrl: "./navbar.component.html",
+    styleUrls: ["./navbar.component.css"],
 })
 export class MainNavbarComponent implements OnInit {
     public user!: User;
