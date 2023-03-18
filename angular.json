@@ -25,12 +25,11 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "node_modules/bootstrap/scss/bootstrap.scss",
-                            "node_modules/bootstrap-icons/font/bootstrap-icons.scss"
+                            "./node_modules/bootstrap/scss/bootstrap.scss",
+                            "./node_modules/bootstrap-icons/font/bootstrap-icons.scss"
                         ],
                         "scripts": [
-                            "node_modules/bootstrap/dist/js/bootstrap.js",
-                            "node_modules/@popperjs/core/dist/esm/popper.js"
+                            
                         ]
                     },
                     "configurations": {
@@ -92,7 +91,7 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.css"],
+                        "styles": ["src/styles.scss"],
                         "scripts": []
                     }
                 }
