@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UsersApiService } from 'src/app/services/api/users/users-api.service';
+import { NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
+import { MainSidebarComponent } from "../sidebars/main-sidebar/main-sidebar.component";
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +11,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public user!: User;
 
-  constructor(private router: Router) { }
+  constructor(
+      private usersApiService: UsersApiService,
+      private offcanvasService: NgbOffcanvas
+  ) {}
 
-  ngOnInit(): void {
+  public openSidebar() {
+      this.offcanvasService.open(MainSidebarComponent);
   }
 
-  logOut(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+  public async ngOnInit() {
+
   }
+
 
 }
