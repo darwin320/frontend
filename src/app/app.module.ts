@@ -20,6 +20,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AddTokenInterceptor } from './utils/add-token.interceptor';
+import { NvComponent } from './components/nv/nv.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HomeComponent } from './components/home/home/home.component';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { AddTokenInterceptor } from './utils/add-token.interceptor';
     SignInComponent,
     DashboardComponent,
     NavbarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NvComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,8 @@ import { AddTokenInterceptor } from './utils/add-token.interceptor';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
+  ],schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi:true}
