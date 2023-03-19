@@ -23,7 +23,11 @@ export class NavbarComponent implements OnInit {
   }
 
   public async ngOnInit() {
+    const user = await this.usersApiService.getCurrentUser();
 
+    if (user.ok) {
+        this.user = user.val;
+    }
   }
 
 

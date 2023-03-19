@@ -1,17 +1,18 @@
 <nav
-    class="navbar navbar-dark bg-700 navbar-expand-sm border-bottom shadow mb-3"
+     class="navbar navbar-dark bg-dark navbar-expand-sm border-bottom shadow mb-3"
 >   
     <div class="container-fluid justify-content-between">
         <button
             class="btn btn-light text-sm"
             type="button"
             (click)="openSidebar()"
+            
         >
             <i class="bi bi-house-fill"></i>
             <br />
             Menú
         </button>
-        <a class="navbar-brand" routerLink="/home">🦝 Claralia</a>
+        <a class="navbar-brand" routerLink="/home">Claralia</a>
         <a
             routerLink="/users/{{ user ? user.id : '' }}"
             class="btn btn-light d-none d-sm-block"
