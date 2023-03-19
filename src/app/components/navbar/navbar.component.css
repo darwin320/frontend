@@ -1,0 +1,15 @@
+.custom-navbar {
+    background-color: #000000; 
+    
+  }
+  
+  .custom-sidebar {
+    border: 2px solid #9E8110;
+    color: #9E8110;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 1000;
+    font-size: 24px;
+    background-color: #000000;
+  }

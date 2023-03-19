@@ -1,9 +1,11 @@
+<link rel="stylesheat" href="main-sidebar.component.css">
+
 <nav
-     class="navbar navbar-dark bg-dark navbar-expand-sm border-bottom shadow mb-3"
+     class="navbar custom-navbar mb-3"
 >   
     <div class="container-fluid justify-content-between">
         <button
-            class="btn btn-light text-sm"
+            class="btn btn-light custom-sidebar text-sm"
             type="button"
             (click)="openSidebar()"
             
@@ -12,13 +14,13 @@
             <br />
             Menú
         </button>
-        <a class="navbar-brand" routerLink="/home">Claralia</a>
-        <a
+        <img id="profile-img" class="profile-img-card" src="../../../assets/img/claralia-portada.png"/>
+        <a 
             routerLink="/users/{{ user ? user.id : '' }}"
-            class="btn btn-light d-none d-sm-block"
+            class="btn custom-sidebar btn-light d-none d-sm-block"
             type="button"
         >
-            <i class="bi bi-person-fill"></i>
+            <i class="bi  bi-person-fill"></i>
             {{ user ? user.firstName : "" }}
         </a>
     </div>

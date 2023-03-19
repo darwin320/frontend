@@ -7,7 +7,7 @@ import { AuthService } from "src/app/services/auth/auth.service";
 @Component({
     selector: "app-main-sidebar",
     templateUrl: "./main-sidebar.component.html",
-    styleUrls: ["./main-sidebar.component.sass"],
+    styleUrls: ["./main-sidebar.component.css"],
 })
 export class MainSidebarComponent {
     constructor(

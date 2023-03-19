@@ -1,54 +1,60 @@
-<div class="h-100vh d-flex flex-column">
-    <div class="offcanvas-header px-3 pt-3 p-0">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
-    </div>
-    <hr />
-    <div class="offcanvas-body px-3 py-0">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a
-                    routerLink="/home"
-                    routerLinkActive="active"
-                    class="nav-link"
-                    (click)="activeOffcanvas.dismiss()"
-                >
-                    <i class="bi bi-house-fill me-2"></i>
-                    Inicio
-                </a>
-            </li>
-            <li class="nav-item">
-                <a
-                    routerLink="/users"
-                    routerLinkActive="active"
-                    class="nav-link"
-                    (click)="activeOffcanvas.dismiss()"
-                >
-                    <i class="bi bi-people-fill me-2"></i>
-                    Usuarios
-                </a>
-            </li>
-            <li class="nav-item">
-                <a
-                    routerLink="/clients"
-                    routerLinkActive="active"
-                    class="nav-link"
-                    (click)="activeOffcanvas.dismiss()"
-                >
-                    <i class="bi bi-file-earmark-person-fill me-1"></i>
-                    Clientes
-                </a>
-            </li>
-            <li class="nav-item">
-                <button
-                    class="nav-link text-danger"
-                    routerLinkActive="active"
-                    (click)="activeOffcanvas.dismiss(); logout()"
-                >
-                    <i class="bi bi-door-open-fill"></i>
-                    Cerrar sesión
-                </button>
-            </li>
-        </ul>
-    </div>
-    <div></div>
-</div>
+<html>
+    <head>
+        <!--ESTO ES LO QUE IHCE PARA QUE SE VIESEN LOS ICONOS. QUÍTELO Y MIRE A VER QUÉ ES. sOLO DEJE LO QUE ESTÁ DENTRO DEL BODY-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    </head>
+    <body>
+        <div class="h-100vh custom-sidebar d-flex flex-column">
+            <div class="offcanvas-header px-3 pt-3 p-0">
+                <label class="offcanvas-title" id="offcanvasExampleLabel">Menú</label>
+            </div>
+            <hr />
+            <div class="offcanvas-body px-3 py-0">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a
+                            routerLink="/home"
+                            routerLinkActive="active"
+                            (click)="activeOffcanvas.dismiss()"
+                        >
+                            <i class="bi bi-house-fill me-2"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            routerLink="/users"
+                            routerLinkActive="active"
+                            (click)="activeOffcanvas.dismiss()"
+                        >
+                            <i class="bi bi-people-fill me-2"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            routerLink="/clients"
+                            routerLinkActive="active"
+                            (click)="activeOffcanvas.dismiss()"
+                        >
+                            <i class="bi bi-file-earmark-person-fill me-1"></i>
+                            Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item log-out">
+                        <button
+                            class="nav-link text-danger"
+                            routerLinkActive="active"
+                            (click)="activeOffcanvas.dismiss(); logout()"
+                        >
+                            <i class="bi bi-door-open-fill"></i>
+                            Cerrar sesión
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div></div>
+        </div>
+    </body>
+</html>
