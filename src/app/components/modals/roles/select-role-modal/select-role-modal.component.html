@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5">Seleccionar rol</h1>
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">
+    <app-search-table [searchFunctionService]="rolesApiService" #searchTable>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let role of (searchTable.searchResult | async)?.search
+                    "
+                >
+                    <td>{{ role.name }}</td>
+                    <td class="text-center">
+                        <button
+                            class="btn btn-sm btn-primary"
+                            (click)="selectRole(role)"
+                        >
+                            Seleccionar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </app-search-table>
+    <div class="d-flex justify-content-end align-items-center">
+        <p class="small p-0 m-0">
+            Si no encuentras el rol, puedes crear uno nuevo:
+        </p>
+        <button
+            type="button"
+            class="btn btn-sm btn-secondary ms-2"
+            (click)="closeAll()"
+            routerLink="/config/roles"
+        >
+            <i class="bi bi-box-arrow-right"></i>
+            Crear rol
+        </button>
+    </div>
+</div>

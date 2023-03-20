@@ -1,0 +1,46 @@
+<div class="container h-100">
+    <div
+        class="d-flex flex-column flex-1-1-auto justify-content-between py-3 h-100"
+    >
+        <div class="input-group mb-3 px-5">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Búsqueda..."
+                disabled
+            />
+            <button class="btn btn-outline-secondary disabled" type="button">
+                Buscar
+            </button>
+        </div>
+        <div class="flex-1-1-auto">
+            <ng-content></ng-content>
+        </div>
+        <ul class="pagination justify-content-center m-0 p-0 mt-3">
+            <li
+                class="page-item"
+                [ngClass]="{
+                    disabled: currentSearchPage <= 0
+                }"
+            >
+                <button class="page-link" (click)="paginationBack()">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+            </li>
+            <li
+                class="page-item"
+                [ngClass]="{
+                    disabled: currentSearchPage + 1 >= paginationCount
+                }"
+            >
+                <button
+                    class="page-link"
+                    href="#"
+                    (click)="paginationForward()"
+                >
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { FormsModule } from '@angular/forms'; 
 import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
+
 //COMPONENTES 
 
 
@@ -23,8 +25,19 @@ import { AddTokenInterceptor } from './utils/add-token.interceptor';
 import { NvComponent } from './components/nv/nv.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HomeComponent } from './components/home/home/home.component';
-
-
+import { UsersComponent } from './components/home/users/users.component';
+import { CreateUserModalComponent } from './components/modals/users/create-user-modal/create-user-modal.component';
+import { SelectRoleModalComponent } from './components/modals/roles/select-role-modal/select-role-modal.component';
+import { ShowUserComponent } from './components/home/users/show-user/show-user.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ApiService } from "./services/api/api.service";
+import { CommonModule } from '@angular/common';
+import { SearchTableComponent } from "../app/components/search/search-table/search-table.component";
+import { EditUserModalComponent } from './components/modals/users/edit-user-modal/edit-user-modal.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { ShowRoleComponent } from './components/roles/show-role/show-role.component';
+import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
+import { CreateRoleModalComponent } from './components/modals/roles/create-role-modal/create-role-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,12 +45,23 @@ import { HomeComponent } from './components/home/home/home.component';
     SignInComponent,
     DashboardComponent,
     NavbarComponent,
+    UsersComponent,
     SpinnerComponent,
     NvComponent,
-    HomeComponent
+    HomeComponent,
+    SearchTableComponent,
+    SelectRoleModalComponent,
+    CreateUserModalComponent,
+    ShowUserComponent,
+    EditUserModalComponent,
+    RolesComponent,
+    CreateRoleModalComponent,
+    ShowRoleComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -51,8 +75,8 @@ import { HomeComponent } from './components/home/home/home.component';
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi:true}
-  ],
+    {provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi:true},
+    ApiService, MainLoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

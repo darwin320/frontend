@@ -14,4 +14,8 @@
     left: 5%;
     right: 0;
   }
+
+  .nav-item a:hover {
+    cursor: pointer;
+  }
   

@@ -1,0 +1,55 @@
+<div class="h-100 d-flex flex-column">
+    <app-navbar></app-navbar>
+    
+    <h1 class="text-700 text-center m-0">Usuarios</h1>
+    <div class="text-center py-2 border-bottom">
+        <button class="btn btn-primary"
+            (click)="openCreateUserModal()"
+        >
+            <i class="bi bi-plus-lg"></i>
+            Crear usuario
+        </button>
+    </div>
+    <div class="h-100">
+        
+        
+        <app-search-table
+            [searchFunctionService]="usersApiService"
+            #searchTable
+
+        >
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="
+                            let user of (searchTable.searchResult | async)
+                                ?.search
+                        "
+                    >
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role.name }}</td>
+                        <td class="text-center">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                routerLink="/users/{{ user.id }}"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                                Detalles
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </app-search-table>
+    </div>
+</div>
