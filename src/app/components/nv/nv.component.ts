@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./nv.component.css']
 })
 export class NvComponent {
-
+  
 }
