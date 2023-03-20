@@ -1,4 +1,6 @@
 
+
+ 
         <div class="h-100vh custom-sidebar d-flex flex-column">
             <div class="offcanvas-header px-3 pt-3 p-0">
                 <label class="offcanvas-title" id="offcanvasExampleLabel">Menú</label>
@@ -10,7 +12,7 @@
                         <a
                             routerLink="/home"
                             routerLinkActive="active"
-                            (click)="activeOffcanvas.dismiss()"
+                            (click)="activeOffcanvas.dismiss(); home()"
                         >
                             <i class="bi bi-house-fill me-2"></i>
                             Inicio
@@ -20,7 +22,7 @@
                         <a
                             routerLink="/users"
                             routerLinkActive="active"
-                            (click)="activeOffcanvas.dismiss()"
+                            (click)="activeOffcanvas.dismiss(); users()"
                         >
                             <i class="bi bi-people-fill me-2"></i>
                             Usuarios
@@ -50,3 +52,4 @@
             </div>
             <div></div>
         </div>
+

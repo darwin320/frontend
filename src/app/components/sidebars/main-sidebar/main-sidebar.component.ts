@@ -16,6 +16,13 @@ export class MainSidebarComponent {
         private router: Router
     ) {}
 
+    public async users() {
+            this.router.navigate(["/users"]);
+    }
+
+    public async home() {
+        this.router.navigate(["home"]);
+}
     public async logout() {
         if (await this.authService.logout()) {
             this.router.navigate(["/login"]);
