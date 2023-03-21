@@ -27,6 +27,7 @@
                         <button
                             class="btn btn-sm btn-primary"
                             (click)="selectRole(role)"
+                            style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
                         >
                             Seleccionar
                         </button>
@@ -37,16 +38,6 @@
     </app-search-table>
     <div class="d-flex justify-content-end align-items-center">
         <p class="small p-0 m-0">
-            Si no encuentras el rol, puedes crear uno nuevo:
         </p>
-        <button
-            type="button"
-            class="btn btn-sm btn-secondary ms-2"
-            (click)="closeAll()"
-            routerLink="/config/roles"
-        >
-            <i class="bi bi-box-arrow-right"></i>
-            Crear rol
-        </button>
     </div>
 </div>

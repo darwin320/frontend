@@ -4,6 +4,7 @@
     <h1 class="text-700 text-center m-0">Usuarios</h1>
     <div class="text-center py-2 border-bottom">
         <button class="btn btn-primary"
+        style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
             (click)="openCreateUserModal()"
         >
             <i class="bi bi-plus-lg"></i>
@@ -41,9 +42,11 @@
                         <td class="text-center">
                             <button
                                 class="btn btn-sm btn-primary"
+                                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
                                 routerLink="/users/{{ user.id }}"
                             >
                                 <i class="bi bi-eye-fill"></i>
+                                
                                 Detalles
                             </button>
                         </td>
