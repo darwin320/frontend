@@ -9,6 +9,8 @@ import { SearchResult } from "./apiTypes";
  * This interface describes an API that has a search with pagination
  * and other stuff.
  */
+
+
 export interface ApiWithSearch<T> {
     search(
         userSearch?: string,

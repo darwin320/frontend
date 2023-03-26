@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable,throwError } from 'rxjs';
 import { environment } from "src/environments/environment";
 import { ApiService } from '../services/api/api.service';
+import { catchError, map } from 'rxjs/operators';
+import jwt_decode from "jwt-decode";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +24,29 @@ export class AuthService extends ApiService {
                 responseType: "text",
             }
         )
+
+         .pipe(
+        map((result: any) => {
+        
+       // const tokenFormatted = result.match(/"token":"([^"]*)"/)[1];
+        const token = JSON.parse(result).token;  
+        //console.log(token)
+        const decodedToken: any = jwt_decode(token);
+       
+        return { token, decodedToken };
+        }),
+        catchError((error) => {
+           
+          if (error.name === "TokenExpiredError") {
+            window.location.href = "/login";
+          }
+          return throwError(error);
+        })
+      )
+
+
     );
+    
 }
 
 async logout() {
