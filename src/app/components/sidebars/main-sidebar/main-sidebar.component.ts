@@ -20,11 +20,20 @@ export class MainSidebarComponent {
             this.router.navigate(["/users"]);
     }
 
+    public async services() {
+        this.router.navigate(["/services"]);
+}
+
     public async home() {
         this.router.navigate(["home"]);
-}
+    }
+
+    public async reservations() {
+        this.router.navigate(["reservations"]);
+    }
     public async logout() {
         if (await this.authService.logout()) {
+            localStorage.removeItem('token');
             this.router.navigate(["/login"]);
         }
     }

@@ -26,6 +26,9 @@ export interface ApiWithSearch<T> {
 })
 export class ApiService {
     constructor(protected httpClient: HttpClient) {}
+
+ 
+
     protected makeSimpleGetRequest<T>(url: string) {
         return this.observableToResult<T>(
             this.httpClient.get(`${environment.apiUrl}${url}`, {
@@ -80,6 +83,7 @@ export class ApiService {
             )
         );
     }
+    
 
     protected async observableToResult<T>(
         observable: Observable<any>

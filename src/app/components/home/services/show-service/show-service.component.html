@@ -1,0 +1,87 @@
+<div class="h-100 d-flex flex-column">
+    <app-navbar></app-navbar>
+
+    <app-loader class="h-100" *ngIf="!service"></app-loader>
+
+    <div *ngIf="service">
+        <h2 class="text-700 text-center">Servicio</h2>
+        <h6 class="text-600 text-center border-bottom pb-3">
+            {{ service.nameService }}
+        </h6>
+
+        <div class="container">
+            <div class="form-floating mb-2 border rounded">
+                <input
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    [value]="service.nameService"
+                />
+                <label>Nombre</label>
+            </div>
+            <div class="form-floating mb-2 border rounded">
+                <input
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    [value]="service.typeService"
+                />
+                <label>Tipo De Servicio</label>
+            </div>
+            <div class="form-floating mb-2 border rounded">
+                <input
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    [value]="service.nameSupplier"
+                />
+                <label>Nombre del proveedor</label>
+            </div>
+            <div class="form-floating mb-2 border rounded">
+                <input
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    [value]="service.company"
+                />
+                <label>Compañia</label>
+            </div>
+            <div class="form-floating mb-2 border rounded">
+                <input
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    [value]="service.phoneNumber"
+                />
+                <label>Numero De Telefóno del proveedor</label>
+            </div>
+            <div class="form-floating border rounded">
+                <textarea
+                    type="text"
+                    readonly
+                    class="form-control-plaintext"
+                    style="min-height: 12em"
+                    [value]="service.description"
+                ></textarea>
+                <label>Descripción</label>
+            </div>
+            
+            <div class="d-flex justify-content-end gap-2 mt-2">
+                <button
+                    class="btn btn-sm btn-primary"
+                    (click)="openEditServiceModal()"
+                >
+                    <i class="bi bi-pen-fill"></i>
+                    Editar
+                </button>
+                <button
+                    class="btn btn-sm btn-danger"
+                    (click)="openDeleteServiceModal()"
+                >
+                    <i class="bi bi-trash-fill"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

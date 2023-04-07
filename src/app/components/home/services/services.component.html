@@ -1,0 +1,53 @@
+<div class="h-100 d-flex flex-column">
+    <app-navbar></app-navbar>
+
+    <h1 class="text-700 text-center m-0">Servicios</h1>
+    <div class="text-center py-2 border-bottom">
+        <button class="btn btn-primary" 
+        style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+        (click)="openCreateServiceModal()">
+            <i class="bi bi-plus-lg"></i>
+            Crear servicio
+        </button>
+    </div>
+    <div class="h-100 overflow-auto mh-100">
+        <app-search-table
+            [searchFunctionService]="servicesApiService"
+            #searchTable
+        >
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Proovedor</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col"> Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="
+                            let service of (searchTable.searchResult | async)
+                                ?.search
+                        "
+                    >
+                        <td>{{ service.nameService }}</td>
+                        <td>{{ service.description }}</td>
+                        <td>{{ service.typeService }}</td>
+                        <td class=" text-start">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+
+                                routerLink="/services/{{ service.id }}"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                                Detalles
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </app-search-table>
+    </div>
+</div>

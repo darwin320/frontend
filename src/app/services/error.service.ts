@@ -9,11 +9,11 @@ export class ErrorService {
 
   constructor(private toastr: ToastrService) { }
 
-  msjError(e: HttpErrorResponse) {
+  msjError(e: HttpErrorResponse,message:string,message2:string) {
     if (e.error.msg) {
-      this.toastr.error(e.error.msg, 'Error');
+      this.toastr.error(e.error.msg, message2);
     } else {
-      this.toastr.error('Upps ocurrio un error, Verfica Tu Usuario O Contraseña', 'Error');
+      this.toastr.error(message, message2);
     }
   }
 }

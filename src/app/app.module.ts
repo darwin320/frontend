@@ -38,8 +38,18 @@ import { RolesComponent } from './components/roles/roles.component';
 import { ShowRoleComponent } from './components/roles/show-role/show-role.component';
 import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
 import { CreateRoleModalComponent } from './components/modals/roles/create-role-modal/create-role-modal.component';
+import { ServicesComponent } from './components/home/services/services.component';
+import { CreateServiceModalComponent } from './components/modals/services/create-service-modal/create-service-modal.component';
+import { ShowServiceComponent } from './components/home/services/show-service/show-service.component';
+import { EditServiceModalComponent } from './components/modals/services/edit-service-modal/edit-service-modal.component';
+import { SelectServiceModalComponent } from './components/modals/services/select-service-modal/select-service-modal.component';
+import { DeleteServiceModalComponent } from './components/modals/services/delete-service-modal/delete-service-modal.component';
+import { ReservationsComponent } from './components/home/reservations/reservations.component';
+import { ShowReservationComponent } from './components/home/reservations/show-reservation/show-reservation.component';
+import { CreateReservationModal } from './components/modals/reservations/create-reservation-modal/create-reservation-modal.component';
 @NgModule({
   declarations: [
+    ServicesComponent,
     AppComponent,
     LoginComponent,
     SignInComponent,
@@ -52,11 +62,19 @@ import { CreateRoleModalComponent } from './components/modals/roles/create-role-
     SearchTableComponent,
     SelectRoleModalComponent,
     CreateUserModalComponent,
+    EditServiceModalComponent,
+    SelectServiceModalComponent,
+    DeleteServiceModalComponent,
+    ShowServiceComponent,
     ShowUserComponent,
+    ShowReservationComponent,
     EditUserModalComponent,
     RolesComponent,
     CreateRoleModalComponent,
-    ShowRoleComponent
+    CreateServiceModalComponent,
+    ShowRoleComponent,
+    ReservationsComponent,
+    CreateReservationModal
   ],
   imports: [
     ReactiveFormsModule,
