@@ -7,7 +7,8 @@ import { ToastGeneratorService } from "src/app/components/toasts/toast-generator
 import { Err, Ok } from "ts-results";
 import { ApiService } from "src/app/services/api/api.service";
 import { ServicesApiService } from "src/app/services/api/services/service-api.service";
-
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
     selector: "app-create-service-modal",
     templateUrl: "./create-service-modal.component.html",
@@ -20,8 +21,8 @@ export class CreateServiceModalComponent {
         nameSupplier: new FormControl<string>("", [Validators.required]),
         company: new FormControl<string>("", [Validators.required]),
         phoneNumber: new FormControl<string>("", [
-            Validators.required
-           // Validators.pattern("[0-9]*"), // Asegura que sólo se ingresen números
+            Validators.required,
+            Validators.pattern("[0-9]*"), // Asegura que sólo se ingresen números
         ]),
         description: new FormControl<string>("", [Validators.required]),
         value: new FormControl<number>(0, [Validators.required]),
@@ -33,7 +34,9 @@ export class CreateServiceModalComponent {
         private loaderService: MainLoaderService,
         private serviceApiService: ServicesApiService,
         private toastService: ToastGeneratorService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private message : ToastrService,
+        private router: Router
     ) {
     }
     public typeServices: string[] = this.serviceApiService.getTypeServicesList(); // agregar propiedad aquí
@@ -55,19 +58,20 @@ export class CreateServiceModalComponent {
                     description: this.serviceForm.value!.description as string,
                     value: this.serviceForm.value.value! as number,
                 });
-                
+                this.message.success("El servicio Ha Sido Creado Correctamente")
                 return Ok({
                     header: "Servicio creado",
                     body: "Se ha creado el servicio correctamente.",
                 });
+                
             } catch (error: any) {
-                console.log("fdsfslñd")
                 return Err(error);
             }
         });
         
         
         this.activeModal.close();
+        
     }
 
     

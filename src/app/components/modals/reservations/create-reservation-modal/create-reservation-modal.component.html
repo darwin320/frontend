@@ -9,18 +9,122 @@
 </div>
 <form [formGroup]="reservationForm">
     <div class="modal-body">
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="nameClient"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.nameClient.invalid
+                }"
+            />
+            <label>Nombre del Cliente</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <select 
+                class="form-select"
+                formControlName="salon"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.salon.invalid
+                }"
+            >
+            <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Salón de Eventos</option>
+            <option *ngFor="let tipo of typeRoom " [value]="tipo">{{ tipo }}</option>
+            </select>
+            <label>Salón de Eventos</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="cantidadAdultos"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.cantidadAdultos.invalid
+                }"
+            />
+            <label>Cantidad de Adultos</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="cantidadNinos"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.cantidadNinos.invalid
+                }"
+            />
+            <label>Cantidad de Niños</label>
+        </div>
         <div class="form-floating border rounded">
             <input
                 type="date"
                 class="form-control"
-                formControlName="firstName"
+                formControlName="fecha"
                 [ngClass]="{
                     'is-invalid': reservationForm.controls.fecha.invalid
                 }"
             />
             <label>Fecha de Reservacion</label>
         </div>
+        <div class="form-floating border rounded mt-2">
+            <input
+                type="time"
+                class="form-control"
+                formControlName="horaInicio"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.horaInicio.invalid
+                }"
+            />
+            <label>Hora Inicio de la Reservación</label>
+        </div>
+        <div class="form-floating border rounded mt-2">
+            <input
+                type="time"
+                class="form-control"
+                formControlName="horaFin"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.horaFin.invalid
+                }"
+            />
+            <label>Hora Final de la Reservación</label>
+        </div>
+        <div class="form-floating border rounded mt-2">
+            <select 
+                class="form-select"
+                formControlName="tipoEvento"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.tipoEvento.invalid
+                }"
+            >
+            <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Tipo De Evento</option>
+            <option *ngFor="let tipo of typeEvent " [value]="tipo">{{ tipo }}</option>
+            </select>
+            <label>Tipo De Evento</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="downPayment"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.downPayment.invalid
+                }"
+            />
+            <label>Adelanto (COP)</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="priceRoomPerHour"
+                [ngClass]="{
+                    'is-invalid': reservationForm.controls.priceRoomPerHour.invalid
+                }"
+            />
+            <label>Precio Por Hora Salón (COP)</label>
+        </div>
     </div>
+  
     <div class="modal-footer">
         <button
             type="button"

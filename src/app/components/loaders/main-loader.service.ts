@@ -23,7 +23,8 @@ export class MainLoaderService {
     constructor(
         private applicationRef: ApplicationRef,
         private injector: EnvironmentInjector,
-        private toastService: ToastGeneratorService
+        private toastService: ToastGeneratorService,
+       
     ) {}
 
     public async doWithLoadingScreen(
@@ -36,6 +37,7 @@ export class MainLoaderService {
         if (result) {
             if (result.ok) {
                 this.toastService.showMessage(result.val);
+                
             } else {
                 this.toastService.showError(result.val);
             }

@@ -84,6 +84,26 @@ implements ApiWithSearch<Reservation>
         return this.makeSimpleGetRequest<Reservation>(`/reservations/${reservationId}`);
     }
 
+
+    public createrReservation(reservationInformation: {
+        idUser:number;
+        nameClient: string;
+        salon: string;
+        cantidadAdultos: number;
+        cantidadNinos: number;
+        fecha: string;
+        horaInicio: Date;
+        horaFin: Date;
+        tipoEvento: string;
+        downPayment: number;
+        priceRoomPerHour: number;
+    }) {
+        return this.makeSimplePostRequest(
+            "/reservations/create",
+            reservationInformation
+        );
+    }
+
     count(): Promise<number> {
         throw new Error("Method not implemented.");
     }
