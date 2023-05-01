@@ -70,6 +70,11 @@ export class ShowReservationComponent implements OnInit {
         });
     }
 
+     getTotalPrice(): number {
+        return this.serviesOwnReservation.reduce((total, service) => total + (service.price ?? 0), 0);
+      }
+      
+
     openDeleteUserModal() {
         this.modalService.open(DeleteReservationModalComponent, {
             centered: true,
