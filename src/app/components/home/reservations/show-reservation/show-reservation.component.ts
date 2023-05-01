@@ -4,6 +4,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
 import { DeleteReservationModalComponent } from "src/app/components/modals/reservations/delete-reservation-modal/delete-reservation-modal.component";
 import { EditReservationModal } from "src/app/components/modals/reservations/edit-reservation-modal/edit-reservation.modal.component";
+import { SelectServiceModalComponent } from "src/app/components/modals/services/select-service-modal/select-service-modal.component";
 import { Reservation } from "src/app/models/reservation";
 import { Service } from "src/app/models/service";
 import { ReservationsApiService } from "src/app/services/api/reservations/reservation-api.service";
@@ -50,7 +51,7 @@ export class ShowReservationComponent implements OnInit {
         });
     }
 
-    calculateRentRoom(){
+    public calculateRentRoom(){
         const date1 = this.reservation.horaInicio;
         const date2 = this.reservation.horaFin;
         const date1oBJ = new Date(date1);
@@ -60,7 +61,7 @@ export class ShowReservationComponent implements OnInit {
         const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
         this.rentRoom = diffInHours*this.reservation.priceRoomPerHour;
     }
-    openEditUserModal() {
+    public openEditUserModal() {
         this.modalService.open(EditReservationModal, {
             centered: true,
             size: "lg",
@@ -70,12 +71,12 @@ export class ShowReservationComponent implements OnInit {
         });
     }
 
-     getTotalPrice(): number {
+     public getTotalPrice(): number {
         return this.serviesOwnReservation.reduce((total, service) => total + (service.price ?? 0), 0);
       }
       
 
-    openDeleteUserModal() {
+    public openDeleteUserModal() {
         this.modalService.open(DeleteReservationModalComponent, {
             centered: true,
 
@@ -83,6 +84,18 @@ export class ShowReservationComponent implements OnInit {
                 providers: [{ provide: Reservation, useValue: this.reservation }],
             }),
         });
+    }
+
+    public openDetailsService(service:Service){
+        const modalRef = this.modalService.open(SelectServiceModalComponent, {
+            centered: true,
+            size: "lg",
+        }) 
+        modalRef.componentInstance.validatorSelector = false;
+        modalRef.componentInstance.editServiceButton = false;
+        modalRef.componentInstance.validatorDescription = true;
+        modalRef.componentInstance.service = service;
+        modalRef.componentInstance.setterProperties(service);
     }
 
 

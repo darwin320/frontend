@@ -34,7 +34,7 @@
                             <button
                               class="btn btn-sm btn-primary"
                               style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
-                              routerLink="/reservations/{{ service.id }}"
+                              (click)="openDetailsService(service)"
                             >
                               <i class="bi bi-eye-fill"></i>
                               Detalles
@@ -146,13 +146,17 @@
                 <button
                     class="btn btn-sm btn-primary"
                     (click)="openEditUserModal()"
+                    style="margin-bottom: 10px;"
                 >
                     <i class="bi bi-pen-fill"></i>
                     Editar
+                    
                 </button>
                 <button
                     class="btn btn-sm btn-danger"
                     (click)="openDeleteUserModal()"
+                    style="margin-bottom: 10px;"
+
                 >
                     <i class="bi bi-trash-fill"></i>
                     Eliminar
@@ -160,8 +164,9 @@
 
                 <button
                 class="btn btn-sm btn-danger"
-                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-bottom: 10px;"
                 (click)="openDeleteUserModal()"
+
             >   
                 <i class="bi bi-check2-circle"></i>
                 CheckOut
