@@ -208,7 +208,7 @@ import { SelectServiceModalComponent } from "../../services/select-service-modal
     }
    
     
-    servicesReservationValidator() {
+    public servicesReservationValidator() {
         this.showServices = true;
         this.creatingReservation = false;
     }
