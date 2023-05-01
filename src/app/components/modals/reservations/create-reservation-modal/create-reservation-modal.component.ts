@@ -90,13 +90,15 @@ import { Service } from "src/app/models/service";
         modalRef.componentInstance.service = service;
         modalRef.componentInstance.setterProperties(service);
     }
-
-    public deleteServiceOwnReservation(service: Service){
-       
-        let idToDelete = 0;
+    public deleteServiceOwnReservation(service2: Service) {
+        let idToDelete = service2.id; // Aquí debes obtener el id del servicio que quieres eliminar
         let indexToDelete = this.serviesOwnReservation.findIndex(service => service.id === idToDelete);
-        this.serviesOwnReservation.splice(indexToDelete);
+    
+        if (indexToDelete !== -1) { // Verifica si el índice existe antes de eliminarlo
+            this.serviesOwnReservation.splice(indexToDelete, 1); // El segundo parámetro en splice() es la cantidad de elementos a eliminar
+        }
     }
+    
     
     refreshPage() {
         setTimeout(() => {
