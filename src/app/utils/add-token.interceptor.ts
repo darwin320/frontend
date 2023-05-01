@@ -25,7 +25,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
         if(request.headers.get('authorization')!=null){
           this._errorService.msjError(error,"No tienes permitido Acceder a esta funcionalidad de la Aplicación",
         "Acceso No Permitido")
-        this.router.navigate(['/home'])
+        this.router.navigate(['/login'])
         }else{
           this._errorService.msjError(error,"Inicia Sesión primero",
         "Acceso No Permitido")

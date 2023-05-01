@@ -16,8 +16,8 @@ export class ReservationsComponent{
     ) {}
 
     public openCreateReservationModal(){
-        this.modalService.open(CreateReservationModal, {
-            centered: true,
+        this.modalService.open(CreateReservationModal,{
+            size: 'lg',
         });
     }
 

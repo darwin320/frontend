@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5">Eliminar Reservación</h1>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">¿Estás seguro que deseas eliminar la Reservación?</div>
+<div class="modal-footer">
+    <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="activeModal.close()"
+    >
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-danger" (click)="deleteReservation()">
+        Eliminar
+    </button>
+</div>

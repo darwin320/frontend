@@ -10,6 +10,10 @@ import { environment } from "src/environments/environment";
 import { Reservation } from "src/app/models/reservation";
 import { TypeSalon } from "src/app/models/typeSalon";
 import { TypeEvent } from "src/app/models/typeEvent";
+import { Service } from "src/app/models/service";
+import { Inventory } from "src/app/models/inventory";
+
+
 
 @Injectable({
     providedIn: "root",
@@ -18,6 +22,17 @@ export class ReservationsApiService
 extends ApiService
 implements ApiWithSearch<Reservation>
 {
+
+    private TypeRoom : string[] = [];
+    private TypeEvent :string[] = [];
+
+    public getTypeRoom(): string[] {
+        return this.TypeRoom;
+    }
+
+    public getTypeEvent(): string[] {
+        return this.TypeEvent;
+    }
     search(
         userSearch: string,
         currentSearchPage: number,
@@ -30,16 +45,7 @@ implements ApiWithSearch<Reservation>
     }
   
 
-    private TypeRoom : string[] = [];
-    private TypeEvent :string[] = [];
-
-    public getTypeRoom(): string[] {
-        return this.TypeRoom;
-    }
-
-    public getTypeEvent(): string[] {
-        return this.TypeEvent;
-    }
+ 
 
     public async getReservations(
         userSearch: string,
@@ -85,18 +91,20 @@ implements ApiWithSearch<Reservation>
     }
 
 
-    public createrReservation(reservationInformation: {
+    public createReservation(reservationInformation: {
         idUser:number;
         nameClient: string;
         salon: string;
         cantidadAdultos: number;
         cantidadNinos: number;
         fecha: string;
+        fechaFin: string;
         horaInicio: Date;
         horaFin: Date;
         tipoEvento: string;
         downPayment: number;
         priceRoomPerHour: number;
+        inventory: Service[] | Inventory
     }) {
         return this.makeSimplePostRequest(
             "/reservations/create",
@@ -104,8 +112,35 @@ implements ApiWithSearch<Reservation>
         );
     }
 
+    public deleteReservation(reservationId: number) {
+        return this.observableToResult(
+            this.httpClient.delete(
+                `${environment.apiUrl}/reservations/delete/${reservationId}`,
+                {
+                    withCredentials: true,
+                    responseType: "text",
+                }
+            )
+        );
+    }
+
+    public updateReservation(updateReservation: Reservation) {
+       
+        return this.observableToResult(
+            this.httpClient.put(
+                `${environment.apiUrl}/reservations/update/${updateReservation.id}`,
+                updateReservation,
+                {
+                    withCredentials: true,
+                }
+            )
+        );
+    }
+
     count(): Promise<number> {
         throw new Error("Method not implemented.");
     }
+
+
 
 }

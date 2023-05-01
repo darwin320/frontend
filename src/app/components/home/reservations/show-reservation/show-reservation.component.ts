@@ -1,7 +1,11 @@
 import { Component, Injector, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
+import { DeleteReservationModalComponent } from "src/app/components/modals/reservations/delete-reservation-modal/delete-reservation-modal.component";
+import { EditReservationModal } from "src/app/components/modals/reservations/edit-reservation-modal/edit-reservation.modal.component";
 import { Reservation } from "src/app/models/reservation";
+import { Service } from "src/app/models/service";
 import { ReservationsApiService } from "src/app/services/api/reservations/reservation-api.service";
 @Component({
     selector: "app-show-service",
@@ -18,9 +22,15 @@ export class ShowReservationComponent implements OnInit {
     constructor(
         public reservationsApiService: ReservationsApiService ,
         private mainLoaderService: MainLoaderService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private modalService: NgbModal,
     ){
+
+        
+
     }
+
+    public serviesOwnReservation: Service[]=[];
 
     async ngOnInit() {
         this.mainLoaderService.doWithLoadingScreen(async () => {
@@ -29,9 +39,12 @@ export class ShowReservationComponent implements OnInit {
                 this.route.snapshot.params["reservationId"]
             );
 
+
             if (result.ok) {
-               
+              
                 this.reservation = result.val;
+                
+                this.serviesOwnReservation = this.reservation.inventario.servicios;
                 this.calculateRentRoom()
             }
         });
@@ -46,14 +59,25 @@ export class ShowReservationComponent implements OnInit {
         
         const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
         this.rentRoom = diffInHours*this.reservation.priceRoomPerHour;
-
     }
     openEditUserModal() {
-
+        this.modalService.open(EditReservationModal, {
+            centered: true,
+            size: "lg",
+            injector: Injector.create({
+                providers: [{ provide: Reservation, useValue: this.reservation }],
+            }),
+        });
     }
 
     openDeleteUserModal() {
+        this.modalService.open(DeleteReservationModalComponent, {
+            centered: true,
 
+            injector: Injector.create({
+                providers: [{ provide: Reservation, useValue: this.reservation }],
+            }),
+        });
     }
 
 

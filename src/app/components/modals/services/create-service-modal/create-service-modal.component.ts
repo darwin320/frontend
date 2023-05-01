@@ -9,6 +9,7 @@ import { ApiService } from "src/app/services/api/api.service";
 import { ServicesApiService } from "src/app/services/api/services/service-api.service";
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
     selector: "app-create-service-modal",
     templateUrl: "./create-service-modal.component.html",
@@ -36,13 +37,19 @@ export class CreateServiceModalComponent {
         private toastService: ToastGeneratorService,
         private apiService: ApiService,
         private message : ToastrService,
-        private router: Router
+        private router: Router,
+        private location: Location
     ) {
     }
     public typeServices: string[] = this.serviceApiService.getTypeServicesList(); // agregar propiedad aquí
 
     
-    
+    refreshPage() {
+        setTimeout(() => {
+            window.location.reload();
+          }, 1600);
+      }
+      
 
     public async createService() {
         await this.loaderService.doWithLoadingScreen(async () => {
@@ -59,6 +66,8 @@ export class CreateServiceModalComponent {
                     value: this.serviceForm.value.value! as number,
                 });
                 this.message.success("El servicio Ha Sido Creado Correctamente")
+
+                this.refreshPage()
                 return Ok({
                     header: "Servicio creado",
                     body: "Se ha creado el servicio correctamente.",

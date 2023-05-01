@@ -24,7 +24,6 @@ export class UsersComponent {
             centered: true,
         });
         modal.closed.subscribe((result: any) => {
-            console.log(result);
         });
     }
 

@@ -1,4 +1,7 @@
+
+import { Inventory } from "./inventory";
 import { Service } from "./service";
+
 
 export class Reservation{
     constructor(
@@ -8,13 +11,15 @@ export class Reservation{
         public salon: string,
         public cantidadAdultos: number,
         public cantidadNinos: number,
-        public fecha: Date,
+        public fecha: string,
+        public fechaFin: string,
         public horaInicio: Date,
         public horaFin: Date,
         public tipoEvento: string,
         public downPayment: number,
         public priceRoomPerHour: number,
-        public services: Service[] 
+        public inventario : Inventory ,
+        public services? : Service[] ,
     ){
     }
 }

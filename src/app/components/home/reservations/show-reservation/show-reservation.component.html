@@ -7,7 +7,7 @@
     <div *ngIf="reservation">
         <h2 class="text-700 text-center">Reservacion</h2>
         <h6 class="text-600 text-center border-bottom pb-3">
-            {{ reservation.fecha | date: 'dd MMMM yyyy'  }}  {{ reservation.tipoEvento }}
+            {{ reservation.fecha | date: 'dd MMMM yyyy'  }} {{"-"}} {{reservation.fechaFin | date: 'dd MMMM yyyy'}} {{ reservation.tipoEvento }} 
         </h6>
       
         <div class="container">
@@ -26,6 +26,26 @@
                       </thead>
                       <tbody>
                         <!-- Aquí iría el contenido de la tabla -->
+                        <tr
+                        *ngFor="let service of serviesOwnReservation"
+                        
+                    >
+                        <td>{{ service.nameService }}</td>
+                        <td>{{ service.company }}</td>
+                        <td>{{ service.price }}</td>
+                        <td class=" text-start">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+
+                                routerLink="/reservations/{{ service.id }}"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                                Detalles
+                            </button>
+                        </td>
+                 
+                    </tr>
                       </tbody>
                     </table>
                     

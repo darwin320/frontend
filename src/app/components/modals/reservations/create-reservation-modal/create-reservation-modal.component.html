@@ -1,146 +1,244 @@
-<div class="modal-header">
-    <h1 class="modal-title fs-5">Crear Reservación</h1>
-    <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="activeModal.dismiss()"
-    ></button>
-</div>
-<form [formGroup]="reservationForm">
-    <div class="modal-body">
-        <div class="form-floating border rounded mb-2">
-            <input
-                type="text"
-                class="form-control"
-                formControlName="nameClient"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.nameClient.invalid
-                }"
-            />
-            <label>Nombre del Cliente</label>
-        </div>
-        <div class="form-floating border rounded mb-2">
-            <select 
-                class="form-select"
-                formControlName="salon"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.salon.invalid
-                }"
-            >
-            <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Salón de Eventos</option>
-            <option *ngFor="let tipo of typeRoom " [value]="tipo">{{ tipo }}</option>
-            </select>
-            <label>Salón de Eventos</label>
-        </div>
-        <div class="form-floating border rounded mb-2">
-            <input
-                type="text"
-                class="form-control"
-                formControlName="cantidadAdultos"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.cantidadAdultos.invalid
-                }"
-            />
-            <label>Cantidad de Adultos</label>
-        </div>
-        <div class="form-floating border rounded mb-2">
-            <input
-                type="text"
-                class="form-control"
-                formControlName="cantidadNinos"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.cantidadNinos.invalid
-                }"
-            />
-            <label>Cantidad de Niños</label>
-        </div>
-        <div class="form-floating border rounded">
-            <input
-                type="date"
-                class="form-control"
-                formControlName="fecha"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.fecha.invalid
-                }"
-            />
-            <label>Fecha de Reservacion</label>
-        </div>
-        <div class="form-floating border rounded mt-2">
-            <input
-                type="time"
-                class="form-control"
-                formControlName="horaInicio"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.horaInicio.invalid
-                }"
-            />
-            <label>Hora Inicio de la Reservación</label>
-        </div>
-        <div class="form-floating border rounded mt-2">
-            <input
-                type="time"
-                class="form-control"
-                formControlName="horaFin"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.horaFin.invalid
-                }"
-            />
-            <label>Hora Final de la Reservación</label>
-        </div>
-        <div class="form-floating border rounded mt-2">
-            <select 
-                class="form-select"
-                formControlName="tipoEvento"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.tipoEvento.invalid
-                }"
-            >
-            <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Tipo De Evento</option>
-            <option *ngFor="let tipo of typeEvent " [value]="tipo">{{ tipo }}</option>
-            </select>
-            <label>Tipo De Evento</label>
-        </div>
-        <div class="form-floating border rounded mb-2">
-            <input
-                type="text"
-                class="form-control"
-                formControlName="downPayment"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.downPayment.invalid
-                }"
-            />
-            <label>Adelanto (COP)</label>
-        </div>
-        <div class="form-floating border rounded mb-2">
-            <input
-                type="text"
-                class="form-control"
-                formControlName="priceRoomPerHour"
-                [ngClass]="{
-                    'is-invalid': reservationForm.controls.priceRoomPerHour.invalid
-                }"
-            />
-            <label>Precio Por Hora Salón (COP)</label>
-        </div>
-    </div>
-  
-    <div class="modal-footer">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5">Crear Reservación</h1>
         <button
             type="button"
-            class="btn btn-secondary"
-            (click)="activeModal.close()"
-        >
-            Cancelar
-        </button>
-        <button
-            type="button"
-            class="btn btn-primary"
-            [disabled]="reservationForm.invalid"
-            (click)="createReservation()"
-            style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
-        >
-            Guardar
-        </button>
+            class="btn-close"
+            aria-label="Close"
+            (click)="activeModal.dismiss()"
+        ></button>
     </div>
-</form>
+        <div class="rounded mt-2" style="margin-right: 10px;">
+            <button type="button" class="btn btn-primary" (click)="createReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 15px;">
+                Reservacion
+            </button>
+            
+            
+            <button type="button" class="btn btn-primary" (click)="servicesReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 20px;">
+                Servicios
+            </button>
+            <div class="row" style="margin: 10px 10px; font-weight: bold;"*ngIf="showServices" >
+                
+                <div class="border rounded p-5" style="border-width: 1px !important; border-color: black !important;">
+                    <div class="h-100 overflow-auto mh-100">
+                    <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Precio (COP)</th>
+                        <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                        *ngFor="let service of serviesOwnReservation"
+                        
+                    >
+                        <td>{{ service.nameService }}</td>
+                        <td>{{ service.company }}</td>
+                        <td>{{ service.price }}</td>
+                        <td class=" text-start">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+
+                                (click)="showDetailsService(service)" 
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                                Detalles
+                            </button>
+                        </td>
+                        <td class=" text-start">
+                            <button
+                                class="btn btn-sm btn-primary"
+
+                                (click)="editServiceOwnReservation(service)" 
+                            >
+                                <i class="bi bi-pen-fill"></i>
+                                Editar
+                            </button>
+                        </td>
+                        <td class=" text-start">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                style="background-color: rgb(188, 52, 52); color: rgb(255, 255, 255);"
+
+                                (click)="deleteServiceOwnReservation(service)" 
+                            >   
+                                <i class="bi bi-trash-fill"></i>
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="agregateServiceToReservation()"
+                    style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+                >
+                    Agregar Servicio
+                </button>
+            </div>
+
+        </div>
+               
+    <form [formGroup]="reservationForm">
+        <div class="modal-body" *ngIf="creatingReservation">
+            <div class="form-floating border rounded mb-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="nameClient"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.nameClient.invalid
+                    }"
+                />
+                <label>Nombre del Cliente</label>
+            </div>
+            <div class="form-floating border rounded mb-2">
+                <select 
+                    class="form-select"
+                    formControlName="salon"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.salon.invalid
+                    }"
+                >
+                <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Salón de Eventos</option>
+                <option *ngFor="let tipo of typeRoom " [value]="tipo">{{ tipo }}</option>
+                </select>
+                <label>Salón de Eventos</label>
+            </div>
+            <div class="form-floating border rounded mb-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="cantidadAdultos"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.cantidadAdultos.invalid
+                    }"
+                />
+                <label>Cantidad de Adultos</label>
+            </div>
+            <div class="form-floating border rounded mb-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="cantidadNinos"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.cantidadNinos.invalid
+                    }"
+                />
+                <label>Cantidad de Niños</label>
+            </div>
+            <div class="form-floating border rounded mb-2">
+                <input
+                    type="date"
+                    class="form-control"
+                    formControlName="fecha"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.fecha.invalid
+                    }"
+                />
+                <label>Fecha Inicio de Reservacion</label>
+            </div>
+            <div class="form-floating border rounded mb-2">
+                <input
+                    type="date"
+                    class="form-control"
+                    formControlName="fechaFin"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.fechaFin.invalid
+                    }"
+                />
+                <label>Fecha Final de Reservacion</label>
+            </div>
+            <div class="form-floating border rounded mt-2">
+                <input
+                    type="time"
+                    class="form-control"
+                    formControlName="horaInicio"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.horaInicio.invalid
+                    }"
+                />
+                <label>Hora Inicio de la Reservación</label>
+            </div>
+            <div class="form-floating border rounded mt-2">
+                <input
+                    type="time"
+                    class="form-control"
+                    formControlName="horaFin"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.horaFin.invalid
+                    }"
+                />
+                <label>Hora Final de la Reservación</label>
+            </div>
+            <div class="form-floating border rounded mt-2">
+                <select 
+                    class="form-select"
+                    formControlName="tipoEvento"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.tipoEvento.invalid
+                    }"
+                >
+                <option value="" style="color: rgba(0, 0, 0, 0.5);">Selecciona el Tipo De Evento</option>
+                <option *ngFor="let tipo of typeEvent " [value]="tipo">{{ tipo }}</option>
+                </select>
+                <label>Tipo De Evento</label>
+            </div>
+            <div class="form-floating border rounded mt-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="downPayment"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.downPayment.invalid
+                    }"
+                />
+                <label>Adelanto (COP)</label>
+            </div>
+            <div class="form-floating border rounded mt-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="priceRoomPerHour"
+                    [ngClass]="{
+                        'is-invalid': reservationForm.controls.priceRoomPerHour.invalid
+                    }"
+                />
+                <label>Precio Por Hora Salón (COP)</label>
+            </div>
+        </div>
+    
+        <div class="modal-footer">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="activeModal.close()"
+            >
+                Cancelar
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                [disabled]="reservationForm.invalid"
+                (click)="createReservation()"
+                style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+            >
+                Guardar
+            </button>
+        </div>
+    </form>
+
+
+
+
+    

@@ -7,12 +7,13 @@
         (click)="activeModal.dismiss()"
     ></button>
 </div>
-<div class="modal-body">
+<div class="modal-body" *ngIf="validatorSelector">
     <app-search-table [searchFunctionService]="servicesApiService" #searchTable>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">Nombres</th>
+                    <th scope="col">Tipo de Servicio</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -24,16 +25,148 @@
                     "
                 >
                     <td>{{ service.nameService }}</td>
-                    <td class="text-center">
+                    <td>{{ service.typeService }}</td>
+                    <td>
                         <button
                             class="btn btn-sm btn-primary"
-                            (click)="selectService(service)"
+                            (click)="selectService(service); setServiceSelected(service)"
                         >
                             Seleccionar
                         </button>
                     </td>
                 </tr>
+                
             </tbody>
+            
         </table>
     </app-search-table>
+
 </div>
+
+<form [formGroup]="serviceForm" *ngIf="!validatorSelector && !validatorDescription">
+<div class="modal-body"  >
+    <div class="form-floating mt-2 border rounded is-invalid">
+        <textarea
+            type="text"
+            class="form-control"
+            formControlName="description"
+            style="min-height: 12em"
+        ></textarea>
+        <label>Descripción</label>
+    </div>
+    
+    <div class="form-floating" style="margin-top: 10px;">
+        <input
+            type="text"
+            class="form-control"
+            formControlName="price"
+        />
+        <label for="description">Precio (COP)</label>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <button
+        type="button"
+        class="btn btn-primary"
+        style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+        (click)="editServiceOFAnReser(service)">
+        <a *ngIf="editServiceButton">Crear Servicio</a>
+        <a *ngIf="!editServiceButton">Editar Servicio</a>
+    </button>
+</div>
+</form>
+
+
+<form [formGroup]="serviceForm" *ngIf="validatorDescription">
+    <div class="modal-body"  >
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="nameService"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.nameService.invalid
+                }"
+                readonly
+            />
+            <label>Nombre</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input 
+                type="text"
+                class="form-control"
+                formControlName="typeService"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.typeService.invalid
+                }"
+                readonly
+                />
+            
+            <label>Tipo De Servicio</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="nameSupplier"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.nameSupplier.invalid
+                }"
+                readonly
+            />
+            <label>Nombre del proovedor</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="company"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.company.invalid
+                }"
+                readonly
+            />
+            <label>Compañia</label>
+        </div>
+        <div class="form-floating border rounded mb-2">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="phoneNumber"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.phoneNumber.invalid
+                }"
+                readonly
+            />
+            <label>Numero Telefónico proveedor</label>
+        </div>
+        <div class="form-floating mt-2 border rounded is-invalid">
+            <textarea
+                type="text"
+                class="form-control"
+                formControlName="description"
+                style="min-height: 12em"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.description.invalid
+                }"
+                readonly
+            ></textarea>
+            <label>Descripción</label>
+        </div>
+        
+        <div class="form-floating" style="margin-top: 10px;">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="price"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.price.invalid
+                }"
+                readonly
+            />
+            <label for="description">Precio (COP)</label>
+            
+        </div>
+    </div>
+    </form>

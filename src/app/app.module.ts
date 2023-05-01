@@ -47,6 +47,8 @@ import { DeleteServiceModalComponent } from './components/modals/services/delete
 import { ReservationsComponent } from './components/home/reservations/reservations.component';
 import { ShowReservationComponent } from './components/home/reservations/show-reservation/show-reservation.component';
 import { CreateReservationModal } from './components/modals/reservations/create-reservation-modal/create-reservation-modal.component';
+import { DeleteReservationModalComponent } from './components/modals/reservations/delete-reservation-modal/delete-reservation-modal.component';
+import { EditReservationModal } from './components/modals/reservations/edit-reservation-modal/edit-reservation.modal.component';
 @NgModule({
   declarations: [
     ServicesComponent,
@@ -74,7 +76,9 @@ import { CreateReservationModal } from './components/modals/reservations/create-
     CreateServiceModalComponent,
     ShowRoleComponent,
     ReservationsComponent,
-    CreateReservationModal
+    CreateReservationModal,
+    DeleteReservationModalComponent,
+    EditReservationModal
   ],
   imports: [
     ReactiveFormsModule,

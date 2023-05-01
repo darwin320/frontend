@@ -6,6 +6,8 @@ import { ServicesApiService } from "src/app/services/api/services/service-api.se
 import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
 import { ToastGeneratorService } from "src/app/components/toasts/toast-generator.service";
 import { Err, Ok } from "ts-results";
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-edit-service-modal",
@@ -33,7 +35,9 @@ export class EditServiceModalComponent {
 
         private servicesApiService: ServicesApiService,
         private service: Service,
-        private loaderService: MainLoaderService
+        private loaderService: MainLoaderService,
+        private message : ToastrService,
+        private router: Router
     ) {}
     public typeServices: string[] = this.servicesApiService.getTypeServicesList(); // agregar propiedad aquí
 
@@ -51,6 +55,9 @@ export class EditServiceModalComponent {
                     description: this.serviceForm.value!.description as string,
 
                 });
+
+                this.message.success("El servicio Ha Sido Actualizado Correctamente")
+                this.router.navigate(["services"]);
                 return Ok({
                     header: "Servicio editado",
                     body: "Se ha editado el servicio correctamente.",
