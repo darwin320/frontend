@@ -3,7 +3,7 @@
 
     <h1 class="text-700 text-center m-0">Servicios</h1>
     <div class="text-center py-2 border-bottom">
-        <button class="btn btn-primary" 
+        <button class="crear_servicio_cy btn btn-primary" 
         style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
         (click)="openCreateServiceModal()">
             <i class="bi bi-plus-lg"></i>
@@ -36,7 +36,7 @@
                         <td>{{ service.typeService }}</td>
                         <td class=" text-start">
                             <button
-                                class="btn btn-sm btn-primary"
+                                class="detalles_cy btn btn-sm btn-primary"
                                 style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
 
                                 routerLink="/services/{{ service.id }}"

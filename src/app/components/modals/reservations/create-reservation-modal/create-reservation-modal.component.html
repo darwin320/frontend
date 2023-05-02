@@ -8,12 +8,12 @@
         ></button>
     </div>
         <div class="rounded mt-2" style="margin-right: 10px;">
-            <button type="button" class="btn btn-primary" (click)="createReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 15px;">
+            <button type="button" class="reservaciones_cy btn btn-primary" (click)="createReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 15px;">
                 Reservacion
             </button>
             
             
-            <button type="button" class="btn btn-primary" (click)="servicesReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 20px;">
+            <button type="button" class="servicios_cy btn btn-primary" (click)="servicesReservationValidator()" style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41); margin-left: 20px;">
                 Servicios
             </button>
             <div class="row" style="margin: 10px 10px; font-weight: bold;"*ngIf="showServices" >
@@ -79,7 +79,7 @@
             <div class="modal-footer">
                 <button
                     type="button"
-                    class="btn btn-primary"
+                    class="agregar_servicio_cy btn btn-primary"
                     (click)="agregateServiceToReservation()"
                     style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
                 >
@@ -94,7 +94,7 @@
             <div class="form-floating border rounded mb-2">
                 <input
                     type="text"
-                    class="form-control"
+                    class="nombres_cy form-control"
                     formControlName="nameClient"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.nameClient.invalid
@@ -104,7 +104,7 @@
             </div>
             <div class="form-floating border rounded mb-2">
                 <select 
-                    class="form-select"
+                    class="tipo_salon_cy form-select"
                     formControlName="salon"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.salon.invalid
@@ -118,7 +118,7 @@
             <div class="form-floating border rounded mb-2">
                 <input
                     type="text"
-                    class="form-control"
+                    class="adultos_cy form-control"
                     formControlName="cantidadAdultos"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.cantidadAdultos.invalid
@@ -129,7 +129,7 @@
             <div class="form-floating border rounded mb-2">
                 <input
                     type="text"
-                    class="form-control"
+                    class="niños_cy form-control"
                     formControlName="cantidadNinos"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.cantidadNinos.invalid
@@ -140,7 +140,7 @@
             <div class="form-floating border rounded mb-2">
                 <input
                     type="date"
-                    class="form-control"
+                    class="inicio_cy form-control"
                     formControlName="fecha"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.fecha.invalid
@@ -151,7 +151,7 @@
             <div class="form-floating border rounded mb-2">
                 <input
                     type="date"
-                    class="form-control"
+                    class="final_cy form-control"
                     formControlName="fechaFin"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.fechaFin.invalid
@@ -162,7 +162,7 @@
             <div class="form-floating border rounded mt-2">
                 <input
                     type="time"
-                    class="form-control"
+                    class="hora_inicio_cy form-control"
                     formControlName="horaInicio"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.horaInicio.invalid
@@ -173,7 +173,7 @@
             <div class="form-floating border rounded mt-2">
                 <input
                     type="time"
-                    class="form-control"
+                    class="hora_final_cy form-control"
                     formControlName="horaFin"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.horaFin.invalid
@@ -183,7 +183,7 @@
             </div>
             <div class="form-floating border rounded mt-2">
                 <select 
-                    class="form-select"
+                    class="tipo_evento_cy form-select"
                     formControlName="tipoEvento"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.tipoEvento.invalid
@@ -197,7 +197,7 @@
             <div class="form-floating border rounded mt-2">
                 <input
                     type="text"
-                    class="form-control"
+                    class="adelanto_cy form-control"
                     formControlName="downPayment"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.downPayment.invalid
@@ -208,7 +208,7 @@
             <div class="form-floating border rounded mt-2">
                 <input
                     type="text"
-                    class="form-control"
+                    class="valor_hora_cy form-control"
                     formControlName="priceRoomPerHour"
                     [ngClass]="{
                         'is-invalid': reservationForm.controls.priceRoomPerHour.invalid
@@ -228,7 +228,7 @@
             </button>
             <button
                 type="button"
-                class="btn btn-primary"
+                class="guardar_cy btn btn-primary"
                 [disabled]="reservationForm.invalid"
                 (click)="createReservation()"
                 style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"

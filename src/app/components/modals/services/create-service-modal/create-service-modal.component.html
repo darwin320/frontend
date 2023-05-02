@@ -12,7 +12,7 @@
         <div class="form-floating border rounded mb-2">
             <input
                 type="text"
-                class="form-control"
+                class="nombres_cy form-control"
                 formControlName="nameService"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.nameService.invalid
@@ -22,7 +22,7 @@
         </div>
         <div class="form-floating border rounded mb-2">
             <select 
-                class="form-select"
+                class="tipo_servicio_cy form-select"
                 formControlName="typeService"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.typeService.invalid
@@ -36,7 +36,7 @@
         <div class="form-floating border rounded mb-2">
             <input
                 type="text"
-                class="form-control"
+                class="proveedor_cy form-control"
                 formControlName="nameSupplier"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.nameSupplier.invalid
@@ -47,7 +47,7 @@
         <div class="form-floating border rounded mb-2">
             <input
                 type="text"
-                class="form-control"
+                class="compañia_cy form-control"
                 formControlName="company"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.company.invalid
@@ -58,7 +58,7 @@
         <div class="form-floating border rounded mb-2">
             <input
                 type="text"
-                class="form-control"
+                class="numero_cy form-control"
                 formControlName="phoneNumber"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.phoneNumber.invalid
@@ -70,7 +70,7 @@
             <textarea
                 formControlName="description"
                 type="text"
-                class="form-control"
+                class="descripcion_cy form-control"
                 style="min-height: 10em"
                 [ngClass]="{
                     'is-invalid': serviceForm.controls.description.invalid
@@ -88,7 +88,7 @@
             </button>
             <button
                 type="button"
-                class="btn btn-primary"
+                class="guardar_cy btn btn-primary"
                 [disabled]="serviceForm.invalid"
                 style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
 

@@ -28,7 +28,7 @@
                     <td>{{ service.typeService }}</td>
                     <td>
                         <button
-                            class="btn btn-sm btn-primary"
+                            class="seleccionar_servicio_cy btn btn-sm btn-primary"
                             (click)="selectService(service); setServiceSelected(service)"
                         >
                             Seleccionar
@@ -48,7 +48,7 @@
     <div class="form-floating mt-2 border rounded is-invalid">
         <textarea
             type="text"
-            class="form-control"
+            class="descripcion_servicio_cy form-control"
             formControlName="description"
             style="min-height: 12em"
         ></textarea>
@@ -58,7 +58,7 @@
     <div class="form-floating" style="margin-top: 10px;">
         <input
             type="text"
-            class="form-control"
+            class="precio_servicio_cy form-control"
             formControlName="price"
         />
         <label for="description">Precio (COP)</label>
@@ -68,7 +68,7 @@
 <div class="modal-footer">
     <button
         type="button"
-        class="btn btn-primary"
+        class="confirmar_servicio_cy btn btn-primary"
         style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
         (click)="editServiceOFAnReser(service)">
         <a *ngIf="editServiceButton">Crear Servicio</a>

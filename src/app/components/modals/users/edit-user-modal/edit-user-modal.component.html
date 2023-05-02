@@ -12,7 +12,7 @@
         <div class="form-floating border rounded">
             <input
                 type="text"
-                class="form-control"
+                class="nombres_cy form-control"
                 formControlName="firstName"
                 [ngClass]="{
                     'is-invalid': userForm.controls.firstName.invalid
@@ -23,7 +23,7 @@
         <div class="form-floating mt-2 border rounded is-invalid">
             <input
                 type="text"
-                class="form-control"
+                class="apellido_cy form-control"
                 formControlName="lastName"
                 [ngClass]="{
                     'is-invalid': userForm.controls.lastName.invalid
@@ -34,7 +34,7 @@
         <div class="form-floating mt-2 border rounded">
             <input
                 type="email"
-                class="form-control"
+                class="correo_cy form-control"
                 formControlName="email"
                 [ngClass]="{
                     'is-invalid': userForm.controls.email.invalid
@@ -72,7 +72,7 @@
         </button>
         <button
             type="button"
-            class="btn btn-primary"
+            class="guardar_cy btn btn-primary"
             style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
             [disabled]="userForm.invalid"
             (click)="editUser()"
