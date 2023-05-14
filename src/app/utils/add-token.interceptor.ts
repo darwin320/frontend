@@ -16,7 +16,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
   public handleError(error: HttpErrorResponse, errorCode: number,request:HttpRequest<unknown> ): Observable<never> {
     
     if (error.status == 401) {
-      if(error.url?.toLowerCase() == "http://localhost:3001/login/password"){
+      if(error.url?.toLowerCase() == "https://server-production-b300.up.railway.app/login/password"){
         this._errorService.msjError(error,"Upps ocurrio un error, Verfica Tu Usuario O Contraseña",
         "Credenciales No Validas")
         this.router.navigate(['/login'])
