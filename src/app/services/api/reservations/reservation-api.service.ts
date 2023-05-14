@@ -125,7 +125,6 @@ implements ApiWithSearch<Reservation>
     }
 
     public updateReservation(updateReservation: Reservation) {
-       
         return this.observableToResult(
             this.httpClient.put(
                 `${environment.apiUrl}/reservations/update/${updateReservation.id}`,

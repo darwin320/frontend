@@ -74,6 +74,12 @@ export class ShowReservationComponent implements OnInit {
      public getTotalPrice(): number {
         return this.serviesOwnReservation.reduce((total, service) => total + (service.price ?? 0), 0);
       }
+
+      public getTotalEarning(): number{
+        return this.serviesOwnReservation.reduce((total, service) => total + ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0);
+
+
+      }
       
 
     public openDeleteUserModal() {

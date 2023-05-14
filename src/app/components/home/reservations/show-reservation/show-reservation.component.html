@@ -21,6 +21,7 @@
                         <tr>
                           <th scope="col">Servicio</th>
                           <th scope="col">Empresa</th>
+                          <th scope="col">Porcentaje de Ganancia(%)</th>
                           <th scope="col">Precio</th>
                         </tr>
                       </thead>
@@ -29,7 +30,9 @@
                         <tr *ngFor="let service of serviesOwnReservation">
                           <td>{{ service.nameService }}</td>
                           <td>{{ service.company }}</td>
+                          <td>{{ service.earningsPer }} %</td>
                           <td>{{ service.price | currency:'COP ':'symbol':'1.0-0' }}</td>
+                          
                           <td class="text-start">
                             <button
                               class="btn btn-sm btn-primary"
@@ -43,8 +46,12 @@
                         </tr>
                         <!-- Fila para mostrar el total de los precios -->
                         <tr>
-                            <td colspan="2" class="text-end">Total:</td>
+                            <td colspan="3" class="text-end">Total:</td>
                             <td>{{ getTotalPrice() | currency:'COP ':'symbol':'1.0-0' }}</td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" class="text-end">Ganancia (COP)</td>
+                            <td>{{ getTotalEarning() | currency:'COP ':'symbol':'1.0-0' }}</td>
                           </tr>
                       </tbody>
                     </table>

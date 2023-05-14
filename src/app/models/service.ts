@@ -7,6 +7,7 @@ export class Service {
         public company: string,
         public phoneNumber: string,
         public description: string,
-        public price? : number
+        public price? : number,
+        public earningsPer?: number
     ){}
 };
