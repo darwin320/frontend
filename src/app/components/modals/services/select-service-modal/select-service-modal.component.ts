@@ -31,6 +31,10 @@ export class SelectServiceModalComponent {
         price: new FormControl<number>(0,[
             Validators.required,
         Validators.pattern("[0-9]*"),
+        ]),
+        earningsPer: new FormControl<number>(0,[
+            Validators.required,
+        Validators.pattern("[0-9]*"),
         ])
     });
     public setServiceSelected(service: Service){
@@ -59,8 +63,11 @@ export class SelectServiceModalComponent {
     public async editServiceOFAnReser(service: Service) {
                 service.description = this.serviceForm.value!.description as any;
                 service.price = this.serviceForm.value!.price as any;
+                service.earningsPer = this.serviceForm.value!.earningsPer as any;
                 this.activeModal.close(service);        
     }
+
+    
 
 
     public setterProperties(service: Service){
@@ -71,6 +78,7 @@ export class SelectServiceModalComponent {
         this.serviceForm.controls.phoneNumber.setValue(service.phoneNumber);
         this.serviceForm.controls.description.setValue(service.description);
         this.serviceForm.controls.price.setValue(Number(service.price));
+        this.serviceForm.controls.earningsPer.setValue(Number(service.earningsPer));
     }
     
 }

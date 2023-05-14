@@ -64,6 +64,15 @@
         <label for="description">Precio (COP)</label>
         
     </div>
+    <div class="form-floating" style="margin-top: 10px;">
+        <input
+            type="text"
+            class="precio_servicio_cy form-control"
+            formControlName="earningsPer"
+        />
+        <label for="description">Porcentaje De Ganancia Sobre El Precio (%)</label>
+        
+    </div>
 </div>
 <div class="modal-footer">
     <button
@@ -166,6 +175,20 @@
                 readonly
             />
             <label for="description">Precio (COP)</label>
+            
+        </div>
+
+        <div class="form-floating" style="margin-top: 10px;">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="earningsPer"
+                [ngClass]="{
+                    'is-invalid': serviceForm.controls.earningsPer.invalid
+                }"
+                readonly
+            />
+            <label for="description">Porcentaje De Ganancia Sobre El Precio (%) </label>
             
         </div>
     </div>

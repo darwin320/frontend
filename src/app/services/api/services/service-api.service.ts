@@ -76,6 +76,7 @@ export class ServicesApiService
         phoneNumber: string;
         description: string;
         value: number;
+        earningsPer: number;
     }) {
         return this.makeSimplePostRequest(
             "/services/create",

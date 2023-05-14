@@ -27,6 +27,7 @@ export class CreateServiceModalComponent {
         ]),
         description: new FormControl<string>("", [Validators.required]),
         value: new FormControl<number>(0, [Validators.required]),
+        earningsPer: new FormControl<number>(0, [Validators.required]),
     });
     
     constructor(
@@ -64,6 +65,7 @@ export class CreateServiceModalComponent {
                     phoneNumber: this.serviceForm.value!.phoneNumber as string,
                     description: this.serviceForm.value!.description as string,
                     value: this.serviceForm.value.value! as number,
+                    earningsPer: this.serviceForm.value!.earningsPer as number
                 });
                 this.message.success("El servicio Ha Sido Creado Correctamente")
 

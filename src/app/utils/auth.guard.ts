@@ -5,11 +5,17 @@ import { environment } from "src/environments/environment";
 import { ApiService } from '../services/api/api.service';
 import { catchError, map } from 'rxjs/operators';
 import jwt_decode from "jwt-decode";
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService extends ApiService {
+    
+  
+    private token: string | undefined;
+
 
   async login(email: string, password: string) {
     return this.observableToResult(
@@ -32,7 +38,7 @@ export class AuthService extends ApiService {
         const token = JSON.parse(result).token;  
         //console.log(token)
         const decodedToken: any = jwt_decode(token);
-       
+        this.token = token
         return { token, decodedToken };
         }),
         catchError((error) => {
@@ -61,9 +67,15 @@ async logout() {
     );
 }
 
+
+
 async canActivate() {
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token
+      });
     return await this.observableToResult<string>(
         this.httpClient.get(`${environment.endpoint}auth/canActivate`, {
+            headers: headers,
             withCredentials: true,
             responseType: "text",
         })
