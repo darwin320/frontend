@@ -5,7 +5,7 @@
 
 <app-loader class="h-100" *ngIf="!reservation"></app-loader>
     <div *ngIf="reservation">
-        <h2 class="text-700 text-center">Reservacion</h2>
+        <h2 class="text-700 text-center">Reservación</h2>
         <h6 class="text-600 text-center border-bottom pb-3">
             {{ reservation.fecha | date: 'dd MMMM yyyy'  }} {{"-"}} {{reservation.fechaFin | date: 'dd MMMM yyyy'}} {{ reservation.tipoEvento }} 
         </h6>
@@ -46,11 +46,15 @@
                         </tr>
                         <!-- Fila para mostrar el total de los precios -->
                         <tr>
-                            <td colspan="3" class="text-end">Total:</td>
+                            <td colspan="3" class="text-end">Total Servicios:</td>
                             <td>{{ getTotalPrice() | currency:'COP ':'symbol':'1.0-0' }}</td>
                           </tr>
                           <tr>
-                            <td colspan="3" class="text-end">Ganancia (COP)</td>
+                            <td colspan="3" class="text-end">Costo Alquiler Salon de Eventos:</td>
+                            <td>{{ rentRoom | currency:'COP ':'symbol':'1.0-0' }}</td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" class="text-end">Ganancia:</td>
                             <td>{{ getTotalEarning() | currency:'COP ':'symbol':'1.0-0' }}</td>
                           </tr>
                       </tbody>

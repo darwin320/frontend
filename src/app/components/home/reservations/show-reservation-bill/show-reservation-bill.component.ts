@@ -79,6 +79,19 @@ export class ShowReservationBillComponent implements OnInit {
         return this.getTotalPrice() + this.rentRoom;
       }
       
+        generateSerialNumber(): string {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            
+            let serial = characters.charAt(Math.floor(Math.random() * characters.length));
+            
+            for (let i = 0; i < 9; i++) {
+                let chars = (i % 2 == 0) ? numbers : characters;
+                serial += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            return serial;
+        }
 
     public openDeleteUserModal() {
         this.modalService.open(DeleteReservationModalComponent, {

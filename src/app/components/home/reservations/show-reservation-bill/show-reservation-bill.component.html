@@ -2,7 +2,7 @@
 <app-loader class="h-100" *ngIf="!reservation"></app-loader>
 
 <div *ngIf="reservation">
-    <h2 class="text-700 text-center">Factura</h2>
+    <h2 class="text-700 text-center">Factura {{generateSerialNumber()}} </h2>
     <h6 class="text-600 text-center border-bottom pb-3">
         {{ reservation.fecha | date: 'dd MMMM yyyy'  }} - {{reservation.fechaFin | date: 'dd MMMM yyyy'}} {{ reservation.tipoEvento }} 
     </h6>

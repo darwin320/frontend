@@ -7,6 +7,7 @@ import { SearchResult } from 'src/app/services/api/apiTypes';
 import { ApiWithSearch } from 'src/app/services/api/api.service';
 import { BehaviorSubject, Observable } from "rxjs";
 import { ActivatedRoute } from '@angular/router';
+import { ChartOptions,ChartDataset } from 'chart.js';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -14,6 +15,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReportsComponent {
   @ViewChild(SearchTableComponent, { static: false }) searchTable!: SearchTableComponent<Reservation>;
+
+
+
+  barColor = 'original';
+
+
 
   public services: Service[] = [];
   public servicesNames: string[] = [];
@@ -29,13 +36,34 @@ export class ReportsComponent {
     
   }
 
-  public barChartOptions = {
+  public barChartOptionsOne = {
     responsive: true,
     scales: {
       y: {
         beginAtZero: true,
         ticks: {
           stepSize: 1
+        },
+        title: {
+          display: true,
+          text: 'Cantidad de Servicios'
+        }
+      }
+    }
+};
+
+
+  public barChartOptionsTwo = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 1
+        },
+        title: {
+          display: true,
+          text: 'Ganancia (COP)'
         }
       }
     }
@@ -43,19 +71,24 @@ export class ReportsComponent {
   
   
   
-  public barChartLabels: string[] | undefined ;
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData = [
-    {data: [65, 59, 80, 81], label: 'Servicio'},
-  ];
-
+  
+ 
   public servicesCount: Map<string, number> = new Map<string, number>();
 
+  public resevationsEarningsCount: Map<string,number> = new Map<string,number>();
 
   ngOnInit() {
     this.search();
+    this.changeChart();
   }
+
+  public currentChart = 'config1';
+
+
+  currentChartData: ChartDataset[] = [];
+  currentChartLabels?: string[];
+  currentChartOptions?: ChartOptions;
+  currentChartLegend: boolean = false;
 
   public searchFunctionService!: ApiWithSearch<Reservation>;
 
@@ -70,7 +103,7 @@ export class ReportsComponent {
   public page = 1;
 
   public validator = true;
-
+  public showreports = false;
   public  search() {
     this.searchResult = this.searchFunctionService.search(
         this.searchInput,
@@ -80,6 +113,8 @@ export class ReportsComponent {
         this.validator
         
     );
+
+    
 
     
     this.searchResult.subscribe(async (searchResult: SearchResult<Reservation>) => {
@@ -97,18 +132,63 @@ export class ReportsComponent {
               this.servicesCount.set(serviceName, (this.servicesCount.get(serviceName) || 0) + 1);
             }
           }
+        const date1 = this.reservations[i].horaInicio;
+        const date2 = this.reservations[i].horaFin;
+        const date1oBJ = new Date(date1);
+        const date2oBJ = new Date(date2);
+        const diffInMs =  Number(date2oBJ) - Number(date1oBJ);
         
+        const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+        const rentRoom = diffInHours*this.reservations[i].priceRoomPerHour;
+        const totalEarnings = this.reservations[i].inventario.servicios.reduce((total, service) => total +    rentRoom+ ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0);
+        this.resevationsEarningsCount.set((this.reservations[i].fecha +"-"+ this.reservations[i].nameClient), totalEarnings);
       }
-      this.barChartLabels = Array.from(this.servicesCount.keys());
-      this.barChartData = [
-      {data: Array.from(this.servicesCount.values()), label: 'Servicio'}
+      this.barChartLabelsOne = Array.from(this.servicesCount.keys());
+      this.barChartDataOne = [
+      {data: Array.from(this.servicesCount.values()), label: 'Servicio', backgroundColor: 'lightblue'}
       ];
 
+        // SEGUNDO REPORTE
+        this.barChartLabelsTwo = Array.from(this.resevationsEarningsCount.keys());
+        this.barChartDataTwo = [
+        {data: Array.from(this.resevationsEarningsCount.values()), label: 'Reservacion', backgroundColor: 'lightblue'}
+        ];
       
     });
   }
 
+  public barChartConfig2 = { 
+    data: [ /* data for chart 1 */ ], 
+    labels: [ /* labels for chart 1 */ ], 
+    options: [ /* options for chart 1 */ ], 
+    legend: true
+  };
+  
 
+  public barChartLabelsOne: string[] | undefined ;
+  public barChartTypeOne = 'bar';
+  public barChartLegendOne = true;
+  public barChartDataOne: ChartDataset<"bar">[] = [
+    
+  ];
+
+  public barChartLabelsTwo: string[] | undefined ;
+  public barChartTypeTwo = 'bar';
+  public barChartLegendTwo = true;
+  public barChartDataTwo: ChartDataset<"bar">[] = [
+    
+  ];
+
+
+
+
+  changeChart() {
+    this.showreports = this.currentChart === 'config2';
+  }
+
+
+
+  
 
 
 }

@@ -7,3 +7,25 @@
     align-items: center;
     margin: 0 auto;
 }
+
+.select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.select-container select {
+    border: 2px solid #000000; /* Cambia el '2px' a la anchura que desees para el borde */
+    padding: 10px 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OS45MjggNDkuOTI4Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwMDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFycm93IERvd248L3RpdGxlPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSI0OS45MjggMTIuMjk2IDI0Ljk2NCAzNy4yNTIgMCAxMi4yOTYgNC45NjQgNy4zMzIgMjQuOTY0IDMyLjU4OCA0NC45NjQgNy4zMzIgNDkuOTI4IDEyLjI5NiIvPjwvc3ZnPgo=) no-repeat 95% 50%;
+    background-size: 1em;
+  }
+  
+  .chart-container {
+    margin-top: 50px;  /* Ajustar según tus necesidades */
+  }
+  

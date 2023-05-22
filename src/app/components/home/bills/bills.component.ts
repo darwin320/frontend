@@ -17,7 +17,6 @@ export class BillsComponent {
 }
 
 
-
 public openCreateReservationModal(){
     this.modalService.open(CreateReservationModal,{
         size: 'lg',

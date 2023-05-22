@@ -1,11 +1,28 @@
 <div class="h-100 d-flex flex-column">
-    <app-navbar></app-navbar>
-    <div class="chart-wrapper">
-        <canvas baseChart 
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend">
+  <app-navbar></app-navbar>
+  <h1 class="text-700 text-center m-0">Reportes Financieros</h1>
+  <div class="select-container d-flex justify-content-center my-5">
+    <select [(ngModel)]="currentChart" (change)="changeChart()" class="form-control custom-select mx-5">
+      <option value="config1">Reporte  servicios mas solicitados</option>
+      <option value="config2">Reporte  ganancias obtenidas</option>
+    </select>
+  </div>
+  <div class="chart-container">
+    <div class="chart-wrapper" *ngIf="!showreports">
+      <canvas baseChart 
+      [datasets]="barChartDataOne"
+      [labels]="barChartLabelsOne"
+      [options]="barChartOptionsOne "
+      [legend]="currentChartLegend">
       </canvas>
     </div>
+    <div class="chart-wrapper" *ngIf="showreports">
+      <canvas baseChart 
+      [datasets]="barChartDataTwo"
+      [labels]="barChartLabelsTwo"
+      [options]="barChartOptionsTwo"
+      [legend]="barChartLegendTwo">
+      </canvas>
+    </div>
+  </div>
 </div>
