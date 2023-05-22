@@ -19,7 +19,9 @@ export class Reservation{
         public downPayment: number,
         public priceRoomPerHour: number,
         public inventario : Inventory ,
-        public services? : Service[] ,
+        public checkout : boolean,
+        public services? : Service[]
+       
     ){
     }
 }

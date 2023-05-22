@@ -25,22 +25,21 @@ implements ApiWithSearch<Reservation>
 
     private TypeRoom : string[] = [];
     private TypeEvent :string[] = [];
-
     public getTypeRoom(): string[] {
         return this.TypeRoom;
     }
-
     public getTypeEvent(): string[] {
         return this.TypeEvent;
     }
     search(
         userSearch: string,
         currentSearchPage: number,
-        searchLimit: number
+        searchLimit: number,
+        validator:boolean
     ): Observable<SearchResult<Reservation>> {
        
         return from(
-            this.getReservations(userSearch, currentSearchPage, searchLimit)
+            this.getReservations(userSearch, currentSearchPage, searchLimit,validator)
         );
     }
   
@@ -50,13 +49,15 @@ implements ApiWithSearch<Reservation>
     public async getReservations(
         userSearch: string,
         currentPage: number,
-        searchAmount: number
+        searchAmount: number,
+        validator: boolean
     ): Promise<SearchResult<Reservation>> {
         const result = await this.makeSearchPaginationRequest<Reservation>(
             "/reservations/search",
             userSearch,
             currentPage,
-            searchAmount
+            searchAmount,
+            validator
         );
         const result2 = await this.makeSimplePostRequest<TypeSalon>(
             "/reservations/typeSalon",
@@ -67,15 +68,18 @@ implements ApiWithSearch<Reservation>
             "/reservations/typeEvent",
             userSearch
         );
+
+       
       //  this.typeServices = result2.unwrap().search.map((typeService: TypeService) => typeService.toString());
        // this.typeServices = result2.val(typeService => typeService.name);;
-       if (Array.isArray(result2.val) && Array.isArray(result3.val)) {
+       if (Array.isArray(result2.val) && Array.isArray(result3.val) ) {
         for (const service of result2.val) {
             this.TypeRoom.push(service);
           }
           for (const service of result3.val) {
             this.TypeEvent.push(service);
           }
+
       } else {
         // handle error here
       }
@@ -88,6 +92,20 @@ implements ApiWithSearch<Reservation>
     
     public getReservation(reservationId: number) {
         return this.makeSimpleGetRequest<Reservation>(`/reservations/${reservationId}`);
+    }
+
+    public bills() {
+        return  this.makeSimplePostRequest<TypeEvent>(
+            "/reservations/bills",
+            null
+        );
+    }
+
+    public reports() {
+        return  this.makeSimplePostRequest<TypeEvent>(
+            "/reservations/bills",
+            null
+        );
     }
 
 
@@ -104,6 +122,7 @@ implements ApiWithSearch<Reservation>
         tipoEvento: string;
         downPayment: number;
         priceRoomPerHour: number;
+        checkout: boolean;
         inventory: Service[] | Inventory
     }) {
         return this.makeSimplePostRequest(
@@ -123,6 +142,20 @@ implements ApiWithSearch<Reservation>
             )
         );
     }
+
+    public deleteCheckout(reservationId: number) {
+        return this.observableToResult(
+            this.httpClient.delete(
+                `${environment.apiUrl}/reservations/checkout/${reservationId}`,
+                {
+                    withCredentials: true,
+                    responseType: "text",
+                }
+            )
+        );
+    }
+
+
 
     public updateReservation(updateReservation: Reservation) {
         return this.observableToResult(

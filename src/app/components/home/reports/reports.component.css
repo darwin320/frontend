@@ -1,0 +1,9 @@
+.chart-wrapper {
+    
+    width: 50%; /* Ajusta el ancho como desees */
+    height: 50%; /* Ajusta la altura como desees */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}

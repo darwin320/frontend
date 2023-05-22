@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: 'https://server-production-b300.up.railway.app',
-  apiUrl: "https://server-production-b300.up.railway.app/api"
+  endpoint: 'http://localhost:8080',
+  apiUrl: "http://localhost:8080/api"
 };
 
 /*

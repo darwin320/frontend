@@ -128,6 +128,7 @@ import { SelectServiceModalComponent } from "../../services/select-service-modal
                                 downPayment: Number(this.reservationForm.value!.downPayment),
                                 priceRoomPerHour: Number(this.reservationForm.value!.priceRoomPerHour),
                                 inventario:this.inventory as Inventory,
+                                checkout: false
                               //  services: this.serviesOwnReservation
                             });
                             return Ok({

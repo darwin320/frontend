@@ -2,7 +2,6 @@ import { Component, Injector, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MainLoaderService } from "src/app/components/loaders/main-loader.service";
-import { CheckOutReservationModalComponent } from "src/app/components/modals/reservations/check-out-reservation-modal/check-out-reservation-modal.component";
 import { DeleteReservationModalComponent } from "src/app/components/modals/reservations/delete-reservation-modal/delete-reservation-modal.component";
 import { EditReservationModal } from "src/app/components/modals/reservations/edit-reservation-modal/edit-reservation.modal.component";
 import { SelectServiceModalComponent } from "src/app/components/modals/services/select-service-modal/select-service-modal.component";
@@ -11,12 +10,12 @@ import { Service } from "src/app/models/service";
 import { ReservationsApiService } from "src/app/services/api/reservations/reservation-api.service";
 @Component({
     selector: "app-show-service",
-    templateUrl: "./show-reservation.component.html",
-    styleUrls: ["./show-reservation.component.sass"],
+    templateUrl: "./show-reservation-bill.component.html",
+    styleUrls: ["./show-reservation-bill.component.css"],
 })
 
 
-export class ShowReservationComponent implements OnInit {
+export class ShowReservationBillComponent implements OnInit {
 
     public reservation!: Reservation;
     public rentRoom: number = 0;
@@ -77,14 +76,12 @@ export class ShowReservationComponent implements OnInit {
       }
 
       public getTotalEarning(): number{
-        return this.serviesOwnReservation.reduce((total, service) => total + this.rentRoom+ ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0);
-
-
+        return this.getTotalPrice() + this.rentRoom;
       }
       
 
     public openDeleteUserModal() {
-        this.modalService.open(CheckOutReservationModalComponent, {
+        this.modalService.open(DeleteReservationModalComponent, {
             centered: true,
 
             injector: Injector.create({

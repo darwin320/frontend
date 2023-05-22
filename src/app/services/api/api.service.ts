@@ -15,7 +15,8 @@ export interface ApiWithSearch<T> {
     search(
         userSearch?: string,
         currentSearchPage?: number,
-        searchLimit?: number
+        searchLimit?: number,
+        validator?: boolean
     ): Observable<SearchResult<T>>;
 
     count(): Promise<number>;
@@ -65,7 +66,8 @@ export class ApiService {
         url: string,
         userSearch: string,
         currentPage: number = 0,
-        searchAmount: number = 10
+        searchAmount: number = 10,
+        validator?: boolean
     ) {
         return this.observableToResult<SearchResult<T>>(
             this.httpClient.post(
@@ -76,6 +78,8 @@ export class ApiService {
                     // need to skip 15 ahead and search five more.
                     skip: currentPage * searchAmount,
                     take: searchAmount,
+                    validator: validator
+
                 },
                 {
                     withCredentials: true,

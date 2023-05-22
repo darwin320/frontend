@@ -51,11 +51,13 @@ import { Service } from "src/app/models/service";
         private modalService: NgbModal
         
         
-    ){}
+    ){
+
+        
+    }
 
 
     public agregateServiceToReservation(){
-        
         this.modalService
         .open(SelectServiceModalComponent, {
             centered: true,
@@ -113,8 +115,6 @@ import { Service } from "src/app/models/service";
         let endHour: string | Date | null = null;
 
 
-        
-
         let idUser = 0;
         
         const result = await this.usersApiService.getCurrentUser()
@@ -122,7 +122,7 @@ import { Service } from "src/app/models/service";
                 idUser = result.val.id;
               }
 
-              
+        
       
 
         startHour = this.convertDate(this.reservationForm.value!.fecha,this.reservationForm!.value.horaInicio);
@@ -148,8 +148,10 @@ import { Service } from "src/app/models/service";
                                 tipoEvento: this.reservationForm.value.tipoEvento! as string,
                                 downPayment: Number(this.reservationForm.value!.downPayment),
                                 priceRoomPerHour: Number(this.reservationForm.value!.priceRoomPerHour),
+                                checkout: false,
                                 inventory: this.serviesOwnReservation
                             });      
+                            
                             return Ok({
                                 header: "",
                                 body: ".",

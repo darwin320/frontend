@@ -16,6 +16,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { UsersComponent } from './components/home/users/users.component';
 import { ShowUserComponent } from './components/home/users/show-user/show-user.component';
 import { ShowRoleComponent } from './components/roles/show-role/show-role.component';
+import { BillsComponent } from './components/home/bills/bills.component';
+import { ShowReservationBillComponent } from './components/home/reservations/show-reservation-bill/show-reservation-bill.component';
+import { ReportsComponent } from './components/home/reports/reports.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -32,6 +35,9 @@ const routes: Routes = [
   {path: "reservations/typeSalon",component: ReservationsComponent,canActivate: [AuthGuard]},
   {path: "reservations/typeEvent",component: ReservationsComponent,canActivate: [AuthGuard]},
   {path: "reservations/:reservationId",component: ShowReservationComponent,canActivate: [AuthGuard]},
+  {path: "reservations2/bills",component: BillsComponent,canActivate: [AuthGuard]},
+  {path: "reservations2/reports",component: ReportsComponent,canActivate: [AuthGuard]},
+  {path: "reservations2/:reservationId",component: ShowReservationBillComponent,canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }, 
 ];
 

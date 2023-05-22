@@ -49,6 +49,13 @@ import { ShowReservationComponent } from './components/home/reservations/show-re
 import { CreateReservationModal } from './components/modals/reservations/create-reservation-modal/create-reservation-modal.component';
 import { DeleteReservationModalComponent } from './components/modals/reservations/delete-reservation-modal/delete-reservation-modal.component';
 import { EditReservationModal } from './components/modals/reservations/edit-reservation-modal/edit-reservation.modal.component';
+import { BillsComponent } from './components/home/bills/bills.component';
+import { ShowReservationBillComponent } from './components/home/reservations/show-reservation-bill/show-reservation-bill.component';
+import { CheckOutReservationModalComponent } from './components/modals/reservations/check-out-reservation-modal/check-out-reservation-modal.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ReportsComponent } from './components/home/reports/reports.component';
+
+
 @NgModule({
   declarations: [
     ServicesComponent,
@@ -78,9 +85,15 @@ import { EditReservationModal } from './components/modals/reservations/edit-rese
     ReservationsComponent,
     CreateReservationModal,
     DeleteReservationModalComponent,
-    EditReservationModal
+    EditReservationModal,
+    BillsComponent,
+    ShowReservationBillComponent,
+    CheckOutReservationModalComponent,
+    ReportsComponent
+    
   ],
   imports: [
+    NgChartsModule,
     ReactiveFormsModule,
     BrowserModule,
     NgbModule,
@@ -93,6 +106,8 @@ import { EditReservationModal } from './components/modals/reservations/edit-rese
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
+    
+    
   ],schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],

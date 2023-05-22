@@ -1,0 +1,11 @@
+<div class="h-100 d-flex flex-column">
+    <app-navbar></app-navbar>
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend">
+      </canvas>
+    </div>
+</div>

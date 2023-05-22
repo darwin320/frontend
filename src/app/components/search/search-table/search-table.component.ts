@@ -10,6 +10,7 @@ import { SearchResult } from "src/app/services/api/apiTypes";
 })
 export class SearchTableComponent<T> implements OnInit {
     @Input() searchFunctionService!: ApiWithSearch<T>;
+    @Input() shouldChangeValidator: boolean = false; // Nueva propiedad de entrada
 
     public loading = new BehaviorSubject<boolean>(true);
 
@@ -21,10 +22,19 @@ export class SearchTableComponent<T> implements OnInit {
 
     public page = 1;
 
+    public validator = false;
+
     constructor() {}
 
     ngOnInit() {
+        if (this.shouldChangeValidator) {
+            this.changueValueValidator();
+        }
         this.search();
+    }
+    public  changueValueValidator(){
+        
+        this.validator = true;
     }
 
     public search() {
@@ -33,12 +43,16 @@ export class SearchTableComponent<T> implements OnInit {
         this.searchResult = this.searchFunctionService.search(
             this.searchInput,
             // This has to be done so the pagination starts at 0.
-            this.page - 1
+            this.page - 1,
+            10,
+            this.validator
+            
         );
 
         this.searchResult.subscribe((searchResult: SearchResult<T>) => {
             this.collectionSize = searchResult.searchCount;
             this.loading.next(false);
+            this.validator = searchResult.validator;
         });
     }
 }
