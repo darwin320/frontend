@@ -28,10 +28,13 @@ describe('Test Reservaciones', () => {
     cy.get('.seleccionar_servicio_cy').first().click();
     cy.get('.descripcion_servicio_cy').type('Prueba descripción');
     cy.get('.precio_servicio_cy').type('100000');
+    cy.get('.precio_ganancia_cy').type('10000');
+
     cy.get('.confirmar_servicio_cy').first().click();
-    cy.get('.reservaciones_cy').click();
+   // cy.get('.reservaciones_cy').click();
 
     cy.get('.guardar_cy').click();
+    cy.reload();
     cy.url().should('eq', 'http://localhost:4200/reservations')
 
 /*
