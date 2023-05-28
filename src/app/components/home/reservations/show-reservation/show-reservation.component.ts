@@ -77,7 +77,7 @@ export class ShowReservationComponent implements OnInit {
       }
 
       public getTotalEarning(): number{
-        return this.serviesOwnReservation.reduce((total, service) => total +    this.rentRoom+ ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0);
+        return this.serviesOwnReservation.reduce((total, service) => total + ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0+this.rentRoom);
       }
       
 

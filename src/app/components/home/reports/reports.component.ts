@@ -140,7 +140,7 @@ export class ReportsComponent {
         
         const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
         const rentRoom = diffInHours*this.reservations[i].priceRoomPerHour;
-        const totalEarnings = this.reservations[i].inventario.servicios.reduce((total, service) => total +    rentRoom+ ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0);
+        const totalEarnings = this.reservations[i].inventario.servicios.reduce((total, service) => total    + ((service.price ?? 0) * (service.earningsPer ?? 0) / 100), 0 +  rentRoom);
         this.resevationsEarningsCount.set((this.reservations[i].fecha +"-"+ this.reservations[i].nameClient), totalEarnings);
       }
       this.barChartLabelsOne = Array.from(this.servicesCount.keys());
